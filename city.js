@@ -97,6 +97,7 @@
                         $city.hide();
                         dataHanlder.area();
                     } else {
+                        hasCity = true;   // 重置，使它表示非直辖市。否者如果先点击直辖市后，这里的值会是先前点击的直辖市，即 hasCity = false;
                         // 选择城市
                         $city.find("li")
                             .click(function() {
@@ -351,6 +352,8 @@
                             $city.hide();
 
                             dataHanlder.area();
+
+                            console.log(currentArea);
                         }
                         break;
                     case 3://区县
@@ -508,7 +511,7 @@
                             for (var i in areas) {
                                 if (!hasCity) {  // lxj, 如果是直辖市
                                     var c = i - currentProvince.code;
-                                    if (!(currentProvince.code && c > 100 && c < 200)) {
+                                    if (!(currentProvince.code && c > 100 && c < 200)) { // 不同直辖市的区县
                                         continue;
                                     }
                                 } else {
