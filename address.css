@@ -21,11 +21,28 @@ body {
 	width: 100%;
 	height: 40px;
 	font-size: 14px;
+    color: #000;
 	display: flex;
 	align-items: center;
 	flex-wrap: nowrap;
 	justify-content: center;
 	border-bottom: 1px solid #aaa;
+    padding-right: 1em;
+    padding-left: 1em;
+    position: relative;
+}
+#areaLabel::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: calc(1em + 18px / 2);
+    width: 18px;
+    height: 18px;
+    border-width: 1px;
+    border-style: solid solid none none;
+    border-color: #000;
+    transform: rotate(45deg) translateY(-50%);
+    transform-origin: center;
 }
 #areaLabel span {
 	width: 80px;
@@ -166,8 +183,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 20px 20px 20px 60px;
-    background: rgba(0, 0, 0, 0.5) url("images/loading.gif") no-repeat left 20px center / 30px 30px;
+    padding: 14px 14px 14px 52px;
+    background: rgba(0, 0, 0, 0.5) url("images/loading.gif") no-repeat left 14px center / 24px 24px;
     color: #fff;
     border-radius: 6px;
     font-size: 16px;

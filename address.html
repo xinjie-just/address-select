@@ -55,27 +55,6 @@
                 $("#addressSelect").click(function (e) {
 					e.stopPropagation();
                 });
-			    /*// 选中各级地址
-			    $(".address-content ul li.active").append("<span></span>");
-
-			    //回显显示
-				for (var i = 0, tabCount = $(".selected-address li").length; i < tabCount; i++) {
-				    $($(".selected-address li").get(i)).click(function () {
-						change(this);
-						//e.preventDefault();
-					});
-				}
-				function change(obj) {
-                    for (var i = 0, tabCount = $(".selected-address li").length; i < tabCount; i++) {
-						if ($(".selected-address li").get(i) == obj) {
-							$($(".selected-address li").get(i)).addClass("active");
-							$($(".address-content ul").get(i)).addClass("active");
-						}else {
-							$($(".selected-address li").get(i)).removeClass("active");
-							$($(".address-content ul").get(i)).removeClass("active");
-						}
-                    }
-                }*/
 
                 initAddress();
 			});
@@ -83,7 +62,7 @@
             //初始化地址选择
             function initAddress() {
                 $("#Addr").cityLinkage({
-                    containerId:'addressSelectWrapper',
+                    containerId: 'addressSelectWrapper',
                     getSelectedCode:function(){return $("#Addr").data("code");},
                     callback:function(data) {
                         $("#Addr").val(data.addr).data("code",data.town.code);
