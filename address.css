@@ -165,14 +165,6 @@ body {
     white-space: nowrap;
     color: #333;
     cursor: pointer;
-    /*&.active span {
-                  display: inline-block;
-                  vertical-align: middle;
-                  width: 20px;
-                  height: 20px;
-                  margin-left: 15px;
-                  background: transparent url("../img/selected.png") no-repeat center / 20px 20px;
-              }*/
 }
 .address-content ul li.active {
     background-color: #3da5ef;

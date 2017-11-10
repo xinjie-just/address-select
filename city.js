@@ -10,15 +10,15 @@
             provinceField: 'province',                                  //省份字段名
             cityField: 'city',                                          //城市字段名
             areaField: 'area',                                          //地区字段名
-            townField: 'town',                                           //乡镇字段名
+            townField: 'town',                                          //乡镇字段名
             towncode: 0,                                                //街道乡镇编码
             provinceCode: 0,                                            //省份编码
             cityCode: 0,                                                //城市编码
             areaCode: 0,                                                //地区编码
             containerId: 'cityLinkage',                                 //地址选择的容器id
-            isMobile: true,                                              //是否是移动设备
+            isMobile: true,                                             //是否是移动设备
             callback: function () { },                                  //选择完毕后的回调函数，回传选择完整的省市县数据
-            getSelectedCode: function () { }                              //获取已经选择的最小一级行政区域的编码
+            getSelectedCode: function () { }                            //获取已经选择的最小一级行政区域的编码
         };
 
         //合并默认参数和用户传入的参数
@@ -27,24 +27,24 @@
 
         //定义需要使用的变量
         var $el = $(el),                                                        //当前选择器选中的html元素
-            $container = $("#" + this.currentOptions.containerId),                       //地址选择容器对象
-            $province = $("#" + this.currentOptions.provinceField),                 //当前的省级选择
-            $lastProvince = $("#last" + this.currentOptions.provinceField),         //上次成功选择的省级区域
-            $city = $("#" + this.currentOptions.cityField),                         //市级选择
+            $container = $("#" + this.currentOptions.containerId),              //地址选择容器对象
+            $province = $("#" + this.currentOptions.provinceField),             //当前的省级选择
+            $lastProvince = $("#last" + this.currentOptions.provinceField),     //上次成功选择的省级区域
+            $city = $("#" + this.currentOptions.cityField),                     //市级选择
             $lastCity = $("#last" + this.currentOptions.cityField),             //上次选择的市级区域
-            $area = $("#" + this.currentOptions.areaField),                         //区县选择
+            $area = $("#" + this.currentOptions.areaField),                     //区县选择
             $lastArea = $("#last" + this.currentOptions.areaField),             //上次选择的区县
             $town = $("#" + this.currentOptions.townField),                     //乡镇街道选择
             $lastTown = $("#last" + this.currentOptions.townField),             //上次选择的乡镇街道
-            provinces = {},                                                      //所有的省级数据
-            citys = {},                                                           //所有的市级数据
-            areas = {},                                                           //所有的区县数据
-            selectedCode = "",                                                      //
-            hasCity=true,                                                        //是否有市级选择
-            currentProvince = {},                                                //当前选择的省级
-            currentCity = {},                                                    //当前选择的市级
-            currentArea = {},                                                     //当前选择的区县
-            currentTown = {};                                                     //当前选择的乡镇
+            provinces = {},                                                     //所有的省级数据
+            citys = {},                                                         //所有的市级数据
+            areas = {},                                                         //所有的区县数据
+            selectedCode = "",                                                  //用于存储编码
+            hasCity=true,                                                       //是否有市级选择
+            currentProvince = {},                                               //当前选择的省级
+            currentCity = {},                                                   //当前选择的市级
+            currentArea = {},                                                   //当前选择的区县
+            currentTown = {};                                                   //当前选择的乡镇
 
         //数据处理
         var dataHanlder = {
