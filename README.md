@@ -1,5 +1,6 @@
 # address-select
 # 仿京东app开发省市区街道-四级地址选择插件
+[效果参考](https://codepen.io/xinjie-just/pen/ZMBJEW)
 
 ## 数据源
 1.省市区数据源
