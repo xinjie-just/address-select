@@ -35,9 +35,9 @@ body {
     content: "";
     position: absolute;
     top: 50%;
-    right: calc(1em + 18px / 2);
-    width: 18px;
-    height: 18px;
+    right: calc(1em + 14px / 2);
+    width: 14px;
+    height: 14px;
     border-width: 1px;
     border-style: solid solid none none;
     border-color: #000;

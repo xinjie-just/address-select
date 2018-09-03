@@ -1,74 +1,76 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-		<title>地址选择</title>
-		<meta name="keywords" content="地址选择" />
-		<meta name="description" content="地址选择" />
-		<link rel="stylesheet" type="text/css" href="address.css">
-	</head>
-	<body>
-<label for="Addr" id="areaLabel" class="address">
-	<span>所在地区</span>
-	<input type="text" name="Addr" id="Addr" readonly placeholder="请选择地区">
-</label>
-<div id="addressSelectWrapper">
-	<div id="addressSelect">
-		<div class="tip">
-			<h3>所在地区</h3>
-			<button type="button" id="cancel"></button>
-		</div>
-		<div id="address">
-			<ul class="selected-address">
-				<li class="lastarea" id="lastprovince">请选择</li>
-				<li class="lastarea" id="lastcity">请选择</li>
-				<li class="lastarea" id="lastarea">请选择</li>
-				<li class="lastarea" id="lasttown">请选择</li>
-			</ul>
-			<div class="address-content">
-				<ul id="province"></ul>
-				<ul id="city"></ul>
-				<ul id="area"></ul>
-				<ul id="town"></ul>
-			</div>
-		</div>
-	</div>
-</div>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+        <title>地址选择</title>
+        <meta name="keywords" content="地址选择"/>
+        <meta name="description" content="地址选择"/>
+        <link rel="stylesheet" type="text/css" href="address.css">
+    </head>
+    <body>
+        <label for="Addr" id="areaLabel" class="address">
+            <span>所在地区</span>
+            <input type="text" name="Addr" id="Addr" readonly placeholder="请选择地区">
+        </label>
+        <div id="addressSelectWrapper">
+            <div id="addressSelect">
+                <div class="tip">
+                    <h3>所在地区</h3>
+                    <button type="button" id="cancel" class="cancel"></button>
+                </div>
+                <div id="address">
+                    <ul class="selected-address">
+                        <li class="lastarea" id="lastprovince">请选择</li>
+                        <li class="lastarea" id="lastcity">请选择</li>
+                        <li class="lastarea" id="lastarea">请选择</li>
+                        <li class="lastarea" id="lasttown">请选择</li>
+                    </ul>
+                    <div class="address-content">
+                        <ul class="province" id="province"></ul>
+                        <ul class="city" id="city"></ul>
+                        <ul class="area" id="area"></ul>
+                        <ul class="town" id="town"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-		<script src="jquery.min.js"></script>
-		<script src="city.js"></script>
-		<script>
-			$(function(){
-			    // 地址选择器遮罩层打开与关闭
-				$("#areaLabel").click(function(e){
-				    $("#addressSelectWrapper").show();
-				    e.stopPropagation();
-				});
-				$(document).click(function () {
+        <script src="jquery.min.js"></script>
+        <script src="city.js"></script>
+        <script>
+            $(function () {
+                // 地址选择器遮罩层打开与关闭
+                $("#areaLabel").click(function (e) {
+                    $("#addressSelectWrapper").show();
+                    e.stopPropagation();
+                });
+                $(document).click(function () {
                     $("#addressSelectWrapper").hide();
                 });
-				$("#cancel").click(function () {
+                $("#cancel").click(function () {
                     $("#addressSelectWrapper").hide();
                 });
                 $("#addressSelect").click(function (e) {
-					e.stopPropagation();
+                    e.stopPropagation();
                 });
 
                 initAddress();
-			});
+            });
 
             //初始化地址选择
             function initAddress() {
                 $("#Addr").cityLinkage({
                     containerId: 'addressSelectWrapper',
-                    getSelectedCode:function(){return $("#Addr").data("code");},
-                    callback:function(data) {
-                        $("#Addr").val(data.addr).data("code",data.town.code);
+                    getSelectedCode: function () {
+                        return $("#Addr").data("code");
+                    },
+                    callback: function (data) {
+                        $("#Addr").val(data.addr).data("code", data.town.code);
                     }
                 });
             }
-		</script>
-	</body>
+        </script>
+    </body>
 </html>

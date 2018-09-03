@@ -1,5 +1,4 @@
-﻿
-//省市区街道地址选择四级联动
+﻿//省市区街道地址选择四级联动
 
 ; (function ($, window, document, undefined) {
 
@@ -11,10 +10,10 @@
             cityField: 'city',                                          //城市字段名
             areaField: 'area',                                          //地区字段名
             townField: 'town',                                          //乡镇字段名
-            towncode: 0,                                                //街道乡镇编码
             provinceCode: 0,                                            //省份编码
             cityCode: 0,                                                //城市编码
             areaCode: 0,                                                //地区编码
+            towncode: 0,                                                //街道乡镇编码
             containerId: 'cityLinkage',                                 //地址选择的容器id
             isMobile: true,                                             //是否是移动设备
             callback: function () { },                                  //选择完毕后的回调函数，回传选择完整的省市县数据
@@ -22,7 +21,7 @@
         };
 
         //合并默认参数和用户传入的参数
-        var currentOptions = $.extend({}, this.defaultOptions, option);   // lxj, 将后两个对象合并到空的对象中
+        var currentOptions = $.extend({}, this.defaultOptions, option);   // 将后两个对象合并到空的对象中
         this.currentOptions = currentOptions;
 
         //定义需要使用的变量
@@ -59,7 +58,7 @@
                     || cacheAreaCode.toString()!==currentArea.code //如果缓存的code和当前选择的code不一致，重新加载
                     ) {
                     //缓存当前区县的code
-                    $town.data('code',currentArea.code);   // lxj, 给乡镇街道绑定数据
+                    $town.data('code',currentArea.code);   // 给乡镇街道绑定数据
 
                     //清空老数据
                     $town.empty();
@@ -159,7 +158,7 @@
                 //todo 可以考虑把所有省市县按照从属关系分配好，便于后期使用
                 for (var code in data) {
                     if (!(code % 10000)) {     //获取所有的省级行政单位
-                        provinces[code] = data[code];   // lxj, provinces 是先前定义的一个空对象,现在装下所有省份名
+                        provinces[code] = data[code];   // provinces 是先前定义的一个空对象,现在装下所有省份名
                     }
                     else if (!(code % 100)) { //获取所有的市级行政单位
                         citys[code] = data[code];
@@ -232,7 +231,7 @@
                     dataType: 'json',
                     success: function (data) {
                         //区分省市县
-                        dataHanlder.splitData(data);   // lxj 这里调用"数据处理" dataHanlder 对象的 splitData 方法，
+                        dataHanlder.splitData(data);   // 这里调用"数据处理" dataHanlder 对象的 splitData 方法，
                     }
                 });
             },
@@ -247,8 +246,8 @@
                         dataType: 'json',
                         success: function(town) {
                             toolHanlder.hideLoading();
-                            if ($.isFunction(callback)) {  // lxj, isFunction 判断传入的参数 callback 是否为函数
-                                callback(town);   // lxj, 这里调用回调函数，将得到的乡镇街道作为参数
+                            if ($.isFunction(callback)) {  // isFunction 判断传入的参数 callback 是否为函数
+                                callback(town);   // 这里调用回调函数，将得到的乡镇街道作为参数
                             }
                         }
                     });
@@ -271,7 +270,7 @@
                 //已经选择的省级点击事件
                 $lastProvince.click(function () {
 
-                    if ($province.find("li").length == 0) {  // lxj, 如果更改了省级地址(选择了其它省)
+                    if ($province.find("li").length == 0) {  // 如果更改了省级地址(选择了其它省)
                         dataHanlder.province();
                     } else {
                         $province.find('li[id="' + currentProvince.code + '"]').addClass("active");
@@ -313,7 +312,7 @@
                 loadDataHandler.areaData();
             },
             //地区数据项点击操作
-            liClick: function ($el, level) {  // lxj, 当前被点击的地址作为第一个实参被传入
+            liClick: function ($el, level) {  // 当前被点击的地址作为第一个实参被传入
                 //点击后的选中样式设置
                 $el.siblings("li").removeClass("active");
                 $el.addClass("active");
@@ -384,7 +383,7 @@
                         }
                         break;
 
-                };
+                }
             },
             //关闭地址选择窗体
             close: function () {
@@ -442,8 +441,8 @@
                 //显示对应的区域选择框
 
                 //先移除所有的选择效果
-                $lastProvince.siblings().addBack().removeClass('active');   // lxj， 上次成功选择的省级区域，去除同级别的li的样式
-                $province.siblings().addBack().hide();    // lxj, 当前的省级选择，将同级别的影藏
+                $lastProvince.siblings().addBack().removeClass('active');   // 上次成功选择的省级区域，去除同级别的li的样式
+                $province.siblings().addBack().hide();    // 当前的省级选择，将同级别的影藏
 
                 switch (level) {
                 case 1:
@@ -473,7 +472,7 @@
                 }
             },
             //html组装,用于省市区切换和初次显示时，html的生成
-            createHtml: function (level,para) {  // lxj, para 在后面调用时，使用 town(一个对象，存储了全部乡镇街道) 实参传入
+            createHtml: function (level,para) {  // para 在后面调用时，使用 town(一个对象，存储了全部乡镇街道) 实参传入
                 switch (level) {
                     case 1:
                         {
@@ -494,8 +493,8 @@
                             //加载市级选择
                             for (var i in citys) {
                                 //筛选已经选择的省下面的市
-                                var p = i - currentProvince.code;  // lxj, 用六位编码(数值型)减去当前被选中的省级编码
-                                if (currentProvince && currentProvince.code && p > 0 && p < 10000) { // lxj，意味着这些城市是当前省下面的城市
+                                var p = i - currentProvince.code;  // 用六位编码(数值型)减去当前被选中的省级编码
+                                if (currentProvince && currentProvince.code && p > 0 && p < 10000) { // 意味着这些城市是当前省下面的城市
                                     if (currentCity && currentCity.code && currentCity.code === i) {
                                         $city.append('<li city class="active" id="' + i + '" data-code="' + i + '">' + citys[i] + '</li>');
                                     } else {
@@ -509,7 +508,7 @@
                             $area.empty();
 
                             for (var i in areas) {
-                                if (!hasCity) {  // lxj, 如果是直辖市
+                                if (!hasCity) {  // 如果是直辖市
                                     var c = i - currentProvince.code;
                                     if (!(currentProvince.code && c > 100 && c < 200)) { // 不同直辖市的区县
                                         continue;
