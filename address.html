@@ -38,7 +38,7 @@
         </div>
 
         <script src="jquery.min.js"></script>
-        <script src="city.js"></script>
+        <script src="citys.js"></script>
         <script>
             $(function () {
                 // 地址选择器遮罩层打开与关闭
@@ -62,7 +62,7 @@
             //初始化地址选择
             function initAddress() {
                 $("#Addr").cityLinkage({
-                    containerId: 'addressSelectWrapper',
+                    containerId: "addressSelectWrapper",
                     getSelectedCode: function () {
                         return $("#Addr").data("code");
                     },
