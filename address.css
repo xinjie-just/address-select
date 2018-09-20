@@ -157,6 +157,7 @@ body {
 .address-content ul li {
   height: 36px;
   line-height: 36px;
+  padding-right: 1em;
   padding-left: 1em;
   font-size: 13px;
   width: 100%;

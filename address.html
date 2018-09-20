@@ -38,7 +38,7 @@
         </div>
 
         <script src="jquery.min.js"></script>
-        <script src="citys.js"></script>
+        <script src="city.js"></script>
         <script>
             $(function () {
                 // 地址选择器遮罩层打开与关闭
@@ -67,7 +67,7 @@
                         return $("#Addr").data("code");
                     },
                     callback: function (data) {
-                        $("#Addr").val(data.addr).data("code", data.town.code);
+                        $("#Addr").val(data.addr).data("code", data.code);
                     }
                 });
             }

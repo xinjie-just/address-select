@@ -59,7 +59,7 @@
                     || (!$.isEmptyObject(currentCity) && cacheAreaCode.toString() !== currentCity.code)
                     ) {
                     //缓存当前区县的code
-                    $town.data('code',currentArea.code);   // 给乡镇街道绑定数据
+                    $town.data('code',currentArea.code);
 
                     //清空老数据
                     $town.empty();
@@ -194,7 +194,7 @@
                                 hasCity = true;
                                 citys[code] = data[code];
                                 currentOptions.cityCode = code;
-                            } else if (p > 8000) {//省直辖县级行政单位
+                            } else if (p > 8000) {//省直辖县级行政单位(如湖北->神农架林区，海南省->琼海市(县级市，与区(县)行政区域同级))
                                 citys[code] = data[code];
                                 if (!currentOptions.cityCode) {
                                     currentOptions.cityCode = code;
@@ -221,8 +221,7 @@
                     if (code
                         && !$.isEmptyObject(provinces)
                         && !$.isEmptyObject(citys)
-                        && !$.isEmptyObject(areas)
-                        ) {
+                        && !$.isEmptyObject(areas)) {
                         //获取各级编码
                         selectedCode = code.toString();
                         var provinceCode = selectedCode.substring(0, 2) + "0000";
@@ -272,6 +271,10 @@
                         if (selectedCode.length === 9) {
                             currentTown = { code: selectedCode, name: "" };
                             $town.hide().siblings("ul").hide();
+                            dataHanlder.town();
+                        } else {  // 东莞市，中山市等等下辖街道(乡镇)编码为12位
+                            currentTown = { code: selectedCode, name: "" };
+                            $town.show().siblings("ul").hide();
                             dataHanlder.town();
                         }
                     }
