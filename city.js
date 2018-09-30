@@ -492,6 +492,7 @@
 
                 var rsData = {
                     province: currentProvince,
+					city: currentCity,
                     area: currentArea,
                     town: currentTown,
                     addr:  "",
